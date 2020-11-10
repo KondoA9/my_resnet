@@ -6,7 +6,7 @@ from dl_project.project import Project
 import tensorflow as tf
 
 input_shape = (32, 32)
-label_num = 50000
+label_num = 100
 epochs = 50
 
 project = Project("resnet_cifar100")
@@ -17,7 +17,7 @@ y_test = keras.utils.to_categorical(y_test)
 
 
 with tf.device('/gpu:1'):
-    model = project.build('resnet', input_shape, label_num)
+    model = project.build('fined_resnet', input_shape, label_num)
 
     sgd = keras.optimizers.SGD(momentum=0.9)
     model.compile(optimizer=sgd,
